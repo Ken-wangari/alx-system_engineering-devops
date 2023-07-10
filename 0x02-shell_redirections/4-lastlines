@@ -1,0 +1,2 @@
+#!/bin/batail 
+tail /etc/passwd
