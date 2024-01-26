@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Tells a story based on the contents of the `/etc/passwd` file.
+
+# Function to construct a sentence for each user
+construct_sentence() {
+  local username=$1
+  local password=$2
+  local uid=$3
+  local gid=$4
+  local info=$5
+  local home=$6
+  local shell=$7
+  echo "The user $username is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by the passcode $password, more info about the user here: $info"
+}
+
+# Read the /etc/passwd file and call the function for each line
+while IFS=':' read -r username password uid gid info home shell; do
+  construct_sentence "$username" "$password" "$uid" "$gid" "$info" "$home" "$shell"
+done < "/etc/passwd"
+
