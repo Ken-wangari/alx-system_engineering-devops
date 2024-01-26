@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Parses Apache log files in list format.
+# Displays the IP and HTTP status code.
+
+logfile="apache-access.log"
+
+while read -r line; do
+  ip=$(echo "$line" | awk '{print $1}')
+  status_code=$(echo "$line" | awk '{print $9}')
+  echo "IP: $ip, Status Code: $status_code"
+done < "$logfile"
+
