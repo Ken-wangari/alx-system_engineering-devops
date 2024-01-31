@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Display listening ports including PIDs and program names
+ss -l -p -n
+
