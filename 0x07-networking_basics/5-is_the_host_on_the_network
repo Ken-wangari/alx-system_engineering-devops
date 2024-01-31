@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Check if the script was called with an argument
+if [ -z "$1" ]; then
+  echo "Usage: $0 <IP_ADDRESS>"
+  exit 1
+fi
+
+# Perform the ping
+ping -c 5 "$1"
+
