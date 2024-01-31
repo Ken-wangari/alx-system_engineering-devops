@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Define the new host entries
+new_hosts=(
+    "127.0.0.2 localhost"
+    "8.8.8.8 facebook.com"
+)
+
+# Create a temporary file for the new hosts entries
+temp_file=$(mktemp)
+
+# Add the new host entries to the temporary file
+for entry in "${new_hosts[@]}"; do
+    echo "$entry" >> "$temp_file"
+done
+
+# Backup the original hosts file
+cp /etc/hosts /etc/hosts.bak
+
+# Append the new hosts entries to the original hosts file
+cat "$temp_file" | sudo tee -a /etc/hosts > /dev/null
+
+# Clean up the temporary file
+rm "$temp_file"
+
+echo "Hosts file updated successfully."
+
