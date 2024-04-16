@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Update package index
+sudo apt update
+
+# Install wget
+sudo apt install wget -y
+
+# Download MySQL APT configuration package
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+
+# Install MySQL APT configuration package
+sudo dpkg -i mysql-apt-config_0.8.12-1_all.deb
+
+# Import MySQL GPG key
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
+
+# Update package index again
+sudo apt update
+
+# Check package policy for MySQL server
+sudo apt-cache policy mysql-server
+
+# Install MySQL server and client
+sudo apt install -y mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
+
+# Clean up downloaded file
+rm mysql-apt-config_0.8.12-1_all.deb
+
